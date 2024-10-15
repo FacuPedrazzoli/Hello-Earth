@@ -1,0 +1,6 @@
+Mi nombre es Facundo
+Mi apellido es Pedrazzoli
+35 años
+Y mi lenguaje preferido es Python
+Aunque también me gusta Javascript
+Y Typescript
