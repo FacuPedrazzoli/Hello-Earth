@@ -1,4 +1,4 @@
-import { Type } from "mysql2/typings/mysql/lib/parsers/typeCast"
+import { Type } from "../../Node_modules/mysql2/typings/mysql/lib/parsers/typeCast"
 let fs = require('fs')
 
 let calcularDesperdicio = (sumaCortes, tamañoListon) => {

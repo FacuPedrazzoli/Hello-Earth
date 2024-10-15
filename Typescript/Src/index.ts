@@ -1,56 +1,34 @@
-import 'dotenv/config'
+import '../Node_modules/dotenv/config'
 import fs from 'fs'
 import crearUsuariosRandom from './Creando-Usuarios-TS/main'
 import crearImpuestoSobreUsuarios from './Generando-Impuesto-en-usuario/main'
 import { aplicarCortes } from './Cortes-liston/main'
-import test_liston from './Cortes-liston/testeo'
 import { leyendoArchivos } from './Leyendo-archivos/main'
 
 switch (process.argv[2]) {
-    case 'Creando-Usuarios-TS':
+    case 'crearUsuariosRandom':
         crearUsuariosRandom()
         break
-    case 'Generando-Impuesto-en-usuario':
+    case 'crearImpuestoSobreUsuarios':
         crearImpuestoSobreUsuarios()
-        break        
-    case 'testeo':
-        test_liston()
         break
-    case 'Cortes-liston':
-        //aplicarCortes()
-        break
-    case 'Leyendo-archivo':
+    case 'aplicarCortes':
         {
-            let path = '../src/Leyendo-archivos/numeros.txt'
-            let res = leyendoArchivos(() => fs.readFileSync(path,'utf-8'))
+            let res = aplicarCortes()
+            console.log(res)
+        }
+    case 'leyendoArchivos':
+        {
+            let path = 'C:/Hello-Earth/Typescript/Src/Leyendo-archivos/documento-con-valores.txt'
+            let res = leyendoArchivos(() => 
                 // "20 10 15 10 101"
+                fs.readFileSync(path,'utf-8')
+                )
             console.log(res)
         }
         break
-    case 'cliente':        
+    case 'test':
         break
-    case 'levantararchivos':        
-        break
-    case 'levantararchivosmongo':        
-        break
-    case 'collatz':        
-        break
-    case 'pruebamongo':        
-        break
-    case 'pruebapasswords':        
-        break
-    case 'crearjwt':        
-        break
-    case 'verificarjwt':        
-        break
-    case 'leerjwt':        
-        break
-    case 'servidorsito':        
-        break
-    case 'pruebalog':        
-        break
-    case 'crearclientesmongo':        
-        break    
     default:
         console.log('Atencion, se debe enviar un parametro con la accion a seguir')
 }
