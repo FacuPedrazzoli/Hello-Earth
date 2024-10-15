@@ -3,8 +3,8 @@ let fs = require('fs')
 let path = require('path')
 
 // Constantes que definen las rutas de las carpetas de entrada y salida
-const CARPETA_ARCHIVOS_INPUT = "C:\\HELLO-JAVASCRIPT\\Proyectos\\Proyecto-IDS\\Guardando-Todo\\input"
-const CARPETA_ARCHIVOS_OUTPUT = "C:\\HELLO-JAVASCRIPT\\Proyectos\\Proyecto-IDS\\Guardando-Todo\\output"
+const CARPETA_ARCHIVOS_INPUT = "C:\\Hello-Earth\\Javascript\\Proyectos\\Proyecto-IDS\\Guardando-Todo\\Input"
+const CARPETA_ARCHIVOS_OUTPUT = "C:\\Hello-Earth\\Javascript\\Proyectos\\Proyecto-IDS\\Guardando-Todo\\Ouput"
 
 // Crear la carpeta de entrada si no existe
 if (!fs.existsSync(CARPETA_ARCHIVOS_INPUT)) {

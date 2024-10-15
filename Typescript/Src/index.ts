@@ -14,8 +14,8 @@ switch (process.argv[2]) {
         break
     case 'aplicarCortes':
         {
-            let res = aplicarCortes()
-            console.log(res)
+            //let res = aplicarCortes()
+            //console.log(res)
         }
     case 'leyendoArchivos':
         {
