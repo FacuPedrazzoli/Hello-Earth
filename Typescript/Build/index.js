@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("../Node_modules/dotenv/config");
 const fs_1 = __importDefault(require("fs"));
 const main_1 = __importDefault(require("./Creando-Usuarios-TS/main"));
-const main_2 = __importDefault(require("./Generando-Impuesto-en-usuario/main"));
+const main_2 = __importDefault(require("./Generando-Impuesto/main"));
 const main_3 = require("./Leyendo-archivos/main");
 switch (process.argv[2]) {
     case 'crearUsuariosRandom':
@@ -24,8 +24,6 @@ switch (process.argv[2]) {
             let res = (0, main_3.leyendoArchivos)(() => fs_1.default.readFileSync(path, 'utf-8'));
             console.log(res);
         }
-        break;
-    case 'test':
         break;
     default:
         console.log('Atencion, se debe enviar un parametro con la accion a seguir');

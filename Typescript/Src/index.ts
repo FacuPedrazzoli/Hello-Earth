@@ -1,7 +1,7 @@
 import '../Node_modules/dotenv/config'
 import fs from 'fs'
 import crearUsuariosRandom from './Creando-Usuarios-TS/main'
-import crearImpuestoSobreUsuarios from './Generando-Impuesto-en-usuario/main'
+import crearImpuestoSobreUsuarios from './Generando-Impuesto/main'
 import { aplicarCortes } from './Cortes-liston/main'
 import { leyendoArchivos } from './Leyendo-archivos/main'
 
@@ -26,8 +26,6 @@ switch (process.argv[2]) {
                 )
             console.log(res)
         }
-        break
-    case 'test':
         break
     default:
         console.log('Atencion, se debe enviar un parametro con la accion a seguir')
