@@ -1,8 +1,31 @@
 import fs from 'fs';
 
+// Tipo de datos para la solución
+export interface ItemSolucion {
+    cortes: number[],
+    liston: number,
+    desperdicio: number
+}
+
+// Función para randomizar el tamaño del listón
+let randomizarListon = (): number => {
+    return (Math.random() > 0.50) ? 300 : 420
+}
+
 // Función para calcular el desperdicio
-export let calcularDesperdicio = (sumaCortes: number, tamañoListon: number): number => {
+let calcularDesperdicio = (sumaCortes: number, tamañoListon: number): number => {
     return Math.floor(1000 - Math.round((sumaCortes / tamañoListon) * 1000)) / 10
+}
+
+// Función para obtener cortes desde un archivo de texto
+let obtenerDataTxt = (path: string): string[] => {
+    try {
+        let data = fs.readFileSync(path, 'utf-8')
+        return data.split(' ')
+    } catch (error) {
+        console.error('Error al leer el archivo:', error)
+        return []
+    }
 }
 
 // Función para aplicar los cortes
@@ -18,18 +41,18 @@ export let aplicarCortes = (cortes: number[], tamañoListon: number) => {
         }
     }
 
-    let totalConsumido = 0;
-    let totalProyectado = 0;
-    let salir = false;
-    let puntoDeCorte = 0;
+    let totalConsumido = 0
+    let totalProyectado = 0
+    let salir = false
+    let puntoDeCorte = 0
 
     for (let idx = 0; !salir && idx < cortes.length; idx++) {
         totalProyectado += cortes[idx];
         if (totalProyectado > tamañoListon) {
-            puntoDeCorte = idx;
-            salir = true;
+            puntoDeCorte = idx
+            salir = true
         } else {
-            totalConsumido = totalProyectado;
+            totalConsumido = totalProyectado
         }
     }
 
@@ -41,20 +64,8 @@ export let aplicarCortes = (cortes: number[], tamañoListon: number) => {
     };
 }
 
-// Función para randomizar el tamaño del listón
-export let randomizarListon = (): number => {
-    return (Math.random() > 0.50) ? 300 : 420
-}
-
-// Interfaz para la solución
-export interface ItemSolucion {
-    cortes: number[],
-    liston: number,
-    desperdicio: number
-}
-
 // Función para encontrar la solución
-export let encontrarSolucion = (cortes: number[]): ItemSolucion[] => {
+let encontrarSolucion = (cortes: number[]): ItemSolucion[] => {
     let solucion: ItemSolucion[] = []
 
     while (cortes.length > 0) {
@@ -72,17 +83,6 @@ export let encontrarSolucion = (cortes: number[]): ItemSolucion[] => {
     return solucion
 }
 
-// Función para obtener cortes desde un archivo de texto
-export let obtenerDataTxt = (path: string): string[] => {
-    try {
-        let data = fs.readFileSync(path, 'utf-8')
-        return data.split(' ')
-    } catch (error) {
-        console.error('Error al leer el archivo:', error)
-        return []
-    }
-}
-
 // Función para encontrar la mejor solución
 let forEver = () => {
     let mejorSolucion: ItemSolucion[] = []
@@ -98,10 +98,8 @@ let forEver = () => {
         let desperdicioDeLaSolucion = solucion.reduce((a, b) => a + b.desperdicio, 0)
 
         if (desperdicioDeLaSolucion < menorDesperdicio) {
-            menorDesperdicio = desperdicioDeLaSolucion;
-            mejorSolucion = solucion;
-            console.log('Nueva mejor solución encontrada:', mejorSolucion)
-            console.log('Desperdicio total:', menorDesperdicio)
+            menorDesperdicio = desperdicioDeLaSolucion
+            mejorSolucion = solucion
             // Agregar la nueva mejor solución al archivo
             fs.appendFileSync('Registro-de-soluciones.txt', JSON.stringify({ mejorSolucion, menorDesperdicio }, null, 2) + ',\n')
         }
