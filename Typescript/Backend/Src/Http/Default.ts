@@ -1,13 +1,13 @@
 import express from 'express'
 const path = require('path');
-import datosRouter from './Router/Datos-router'
+import datosRouter from './Routes/Datos-router'
 
 export default () => {
 
     console.log('Levantando servidor HTTP')
     let app = express()
 
-    console.log(path.join(__dirname, '../../public'))
+    console.log(path.join(__dirname, '../../../public'))
 
     app.use(express.static(
         path.join(__dirname, '../')));
