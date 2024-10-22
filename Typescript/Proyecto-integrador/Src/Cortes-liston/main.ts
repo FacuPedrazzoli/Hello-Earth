@@ -15,20 +15,20 @@ export let corteListon = () => {
     forEver()
 }
 
-let calcularDesperdicio = (sumaCortes, tamanioListon) => {
+let calcularDesperdicio = (sumaCortes, tamañoListon) => {
     return Math.floor(1000 - Math.round(sumaCortes /
-        tamanioListon * 1000)) / 10
+        tamañoListon * 1000)) / 10
 }
 
-export let aplicarCortes = (cortes: number[], tamanioListon: number) => {
+export let aplicarCortes = (cortes: number[], tamañoListon: number) => {
     let sumaCortes: number = cortes.reduce((tot, c) => tot + c, 0)
     let arrVacio: number[] = []
-    if (sumaCortes <= tamanioListon) {
+    if (sumaCortes <= tamañoListon) {
         return {
             cortesAplicados: cortes,
             cortesRestantes: arrVacio,
             quedanCortes: false,
-            desperdicio: calcularDesperdicio(sumaCortes, tamanioListon),
+            desperdicio: calcularDesperdicio(sumaCortes, tamañoListon),
         }
     }
 
@@ -39,7 +39,7 @@ export let aplicarCortes = (cortes: number[], tamanioListon: number) => {
 
     for (let idx = 0; salir === false; idx++) {
         totalProyectado += cortes[idx]
-        if (totalProyectado > tamanioListon) {
+        if (totalProyectado > tamañoListon) {
             puntoDeCorte = idx
             salir = true
             continue
@@ -52,7 +52,7 @@ export let aplicarCortes = (cortes: number[], tamanioListon: number) => {
         cortesRestantes: cortes.slice(puntoDeCorte),
         quedanCortes: true,
         desperdicio: calcularDesperdicio(totalConsumido,
-            tamanioListon)
+            tamañoListon)
     }
 }
 

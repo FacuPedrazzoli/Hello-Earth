@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "compilar": ".\\node_modules\\.bin\\tsc --watch",
-    "start": "node ./Build/index.js http"
+    "start": "nodemon ./Build/index.js http"
   },
   "keywords": [],
   "author": "",
@@ -26,12 +26,13 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.13",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.2.5",
     "@types/uuid": "^9.0.1",
-    "typescript": "^5.6.3",
-    "@types/jest": "^29.5.13",
     "jest": "^29.7.0",
-    "ts-jest": "^29.2.5"
+    "nodemon": "^3.1.7",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.3"
   }
 }
