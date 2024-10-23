@@ -81,7 +81,7 @@ let forEver = () => {
     let mejorSolucion: ItemSolucion[] = []
     let menorDesperdicio = Infinity
 
-    let strCortes = fs.readFileSync('C:Hello-Earth/Typescript/Backend/Src/Cortes-liston/cortes.txt', 'utf-8')
+    let strCortes = fs.readFileSync('C:/Hello-Earth/Typescript/Proyecto-intagrado/Backend/Src/Leyendo-archivos/documento-con-valores.txt', 'utf-8')
     let cortes: number[] = strCortes.split(' ').map(z => parseInt(z))
 
     for (let b = 1; b <= 10; b++) {

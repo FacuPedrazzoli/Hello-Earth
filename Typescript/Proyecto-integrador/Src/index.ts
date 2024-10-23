@@ -20,9 +20,8 @@ switch (process.argv[2]) {
         break
     case 'leerarchivos':
         {
-            let path = 'C:/Hello-Earth/Typescript/Backend/Src/Leyendo-archivos/documento-con-valores.txt'
+            let path = 'C:/Hello-Earth/Typescript/Proyecto-intagrado/Backend/Src/Leyendo-archivos/documento-con-valores.txt'
             let res = leyendoArchivos(() =>
-                // "20 10 15 10 101"
                 fs.readFileSync(path, 'utf-8')
             )
             console.log(res)
