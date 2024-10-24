@@ -12,7 +12,7 @@ let randomizarListon = () => {
 
 export let corteListon = () => {
     console.log('es el problema de corte de liston')
-    forEver()
+    return forEver("10 20 50 120 111 160 15 20 35 45 85 85 85 15 14 13 200 290 180 154 69 25 288")
 }
 
 let calcularDesperdicio = (sumaCortes, tamañoListon) => {
@@ -77,14 +77,13 @@ let encontrarSolucion = (cortesParam): ItemSolucion[] => {
     return solucion
 }
 
-let forEver = () => {
+export let forEver = (strCortes:string) => {
     let mejorSolucion: ItemSolucion[] = []
     let menorDesperdicio = Infinity
 
-    let strCortes = fs.readFileSync('C:/Hello-Earth/Typescript/Proyecto-intagrado/Backend/Src/Leyendo-archivos/documento-con-valores.txt', 'utf-8')
     let cortes: number[] = strCortes.split(' ').map(z => parseInt(z))
 
-    for (let b = 1; b <= 10; b++) {
+    for (let b = 1; b <= 100000; b++) {
         cortes = cortes.sort((a, b) => Math.random() - 0.5)
         let solucion = encontrarSolucion(cortes)
         let desperdicioDeLaSolucion =
@@ -93,11 +92,12 @@ let forEver = () => {
                 .reduce((a, b) => a + b, 0)
 
         if (desperdicioDeLaSolucion < menorDesperdicio) {
-            menorDesperdicio = desperdicioDeLaSolucion
+            menorDesperdicio = Math.round((desperdicioDeLaSolucion) * 100) / 100;
             mejorSolucion = solucion
-            console.log('Encontre una solucion mejor')
-            console.log(mejorSolucion)
-            console.log('Desperdicio total: ', desperdicioDeLaSolucion)
         }
+    }
+    return {
+        mejorSolucion,
+        menorDesperdicio 
     }
 }
