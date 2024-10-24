@@ -2,6 +2,7 @@ import express from 'express'
 const path = require('path');
 import datosRouter from './Router/datosRouter'
 import calculosRouter from './Router/calculosRouter';
+import inflacionRouter from './Router/inflacionRouter';
 
 export default () => {
 
@@ -9,18 +10,18 @@ export default () => {
     let app = express()
 
     app.use(express.json());
-    app.use(express.static(
-        path.join(__dirname, '../../../Frontend')));
+app.use(express.static(
+        path.join(__dirname, '../../Frontend')));
 
     app.use('/api/datos', datosRouter)
     app.use('/api/calculos', calculosRouter)
-
+    app.use('/api/inflacion', inflacionRouter)
 
     app.get("/hola", (req, res) => {
-        res.send("hola").end()
+        res.send("Hola como va?").end()
     })
 
     app.listen(80, () => {
         console.log('escuchando puerto 80')
-    })
+})
 }

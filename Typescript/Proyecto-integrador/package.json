@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "compilar": ".\\node_modules\\.bin\\tsc --watch",
-    "start": "nodemon ./Build/index.js http"
+    "start": "nodemon .\\Build\\index.js http" 
   },
   "keywords": [],
   "author": "",
