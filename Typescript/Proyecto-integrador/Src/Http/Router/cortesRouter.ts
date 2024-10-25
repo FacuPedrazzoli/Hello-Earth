@@ -1,17 +1,17 @@
 import express from 'express'
+import { forEver } from '../../Cortes-liston/main'
 
 export default express.Router()    
-    .post('/sumar', async (request, response) => {
+    .post('/liston', async (request, response) => {
         console.log(request.body)
 
-        const total = request.body.x + request.body.y
+        let solucion = forEver(request.body.cortes)
 
         try {
             response            
             .status(200)
-            .send(JSON.stringify({total}))
-        }
-        catch(err) {
+            .send(JSON.stringify({tuSolucion:solucion}))
+        } catch(err) {
             response            
             .status(500)
             .send()
