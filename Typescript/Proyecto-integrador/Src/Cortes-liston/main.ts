@@ -1,5 +1,3 @@
-import fs from 'fs'
-
 export interface ItemSolucion {
     cortes: number[],
     liston: number,
@@ -94,10 +92,8 @@ export let forEver = (strCortes:string) => {
         if (desperdicioDeLaSolucion < menorDesperdicio) {
             menorDesperdicio = Math.round((desperdicioDeLaSolucion) * 100) / 100;
             mejorSolucion = solucion
+
         }
     }
-    return {
-        mejorSolucion,
-        menorDesperdicio 
-    }
+    return mejorSolucion
 }
