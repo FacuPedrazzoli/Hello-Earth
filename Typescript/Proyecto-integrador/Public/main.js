@@ -1,39 +1,57 @@
-import { forEver } from '../Src/Cortes-liston/main.ts';
+import { forEver, ItemSolucion } from '../Src/Cortes-liston/main';
 
-google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(() => {
-    document.getElementById('generarGrafico').addEventListener('click', drawChart);
-    console.log('Event listener added');
+// Evento para procesar los cortes al hacer clic en el botón
+document.getElementById("procesarButton").addEventListener("click", function() {
+    const cortesInput = document.getElementById("cortesInput").value;
+
+    // Ejecutar la función `forEver` con los cortes del usuario
+    const solucion = forEver(cortesInput);
+    
+    // Mostrar los listones en el HTML
+    mostrarListones(solucion);
 });
 
-function drawChart() {
-    console.log('drawChart function called');
-    const cortesInput = document.getElementById('cortesInput').value;
-    console.log('Cortes input:', cortesInput);
-    const cortes = cortesInput.split(' ').map(Number);
-    console.log('Cortes array:', cortes);
+// Función para mostrar los listones y cortes en el HTML
+function mostrarListones(solucion) {
+    const resultadoDiv = document.getElementById("resultado");
+    resultadoDiv.innerHTML = ''; // Limpiar resultados previos
 
-    // Simular la respuesta de la API
-    const mejorSolucion = cortes.map((corte, index) => ({ cortes: corte }));
+    solucion.forEach((item, index) => {
+        const listonCol = document.createElement("div");
+        listonCol.classList.add("col");
 
-    const dataTable = new google.visualization.DataTable();
-    dataTable.addColumn('string', 'Listón');
-    dataTable.addColumn('number', 'Cortes');
-    dataTable.addColumn({ type: 'string', role: 'annotation' });
+        const listonCard = document.createElement("div");
+        listonCard.classList.add("card", "p-3");
 
-    mejorSolucion.forEach((item, index) => {
-        dataTable.addRow([`Listón ${index + 1}`, item.cortes, '']);
+        const listonTitle = document.createElement("h5");
+        listonTitle.classList.add("card-title", "text-center");
+        listonTitle.textContent = `Listón ${index + 1} - Tamaño: ${item.liston} cm`;
+        listonCard.appendChild(listonTitle);
+
+        const desperdicioInfo = document.createElement("p");
+        desperdicioInfo.classList.add("text-muted", "text-center");
+        desperdicioInfo.textContent = `Desperdicio: ${item.desperdicio}%`;
+        listonCard.appendChild(desperdicioInfo);
+
+        item.cortes.forEach(corte => {
+            const corteDiv = document.createElement("div");
+            corteDiv.classList.add("corte");
+            corteDiv.style.backgroundColor = getRandomColor();
+            corteDiv.textContent = `${corte} cm`;
+            listonCard.appendChild(corteDiv);
+        });
+
+        listonCol.appendChild(listonCard);
+        resultadoDiv.appendChild(listonCol);
     });
+}
 
-    const options = {
-        width: 600,
-        height: 400,
-        legend: { position: 'top', maxLines: 3 },
-        bar: { groupWidth: '30%' },
-        isStacked: true,
-    };
-
-    const chart = new google.visualization.ColumnChart(document.getElementById('graficoCortes'));
-    chart.draw(dataTable, options);
-    console.log('Chart drawn');
+// Función para generar un color aleatorio
+function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
