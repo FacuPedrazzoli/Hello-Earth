@@ -1,3 +1,4 @@
+/*
 import * as todoElDriver from 'mysql2'
 import {crearConexion, connect, insert, query, cerrarConexion} from './Driver-Promise'
 import {v4 as uuid} from 'uuid'
@@ -59,3 +60,4 @@ export let validarToken = async (token) => {
     await cerrarConexion(connection)
     return resultSet[0]
 }
+*/
