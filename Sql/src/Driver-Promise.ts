@@ -33,9 +33,9 @@ export let connect = (connection) => {
     })
 }
 
-export let query = async (connection, strSQL, arrValues) => {    
+export let query = async (connection, strSQL, arrValues:(string | number)[] = []) => {
     return new Promise((resolve, reject) => {
-        connection.query(strSQL, arrValues, (err, resultset) => {
+        connection.query(strSQL, arrValues, (err, resultset:any[]) => {
             if (err) {
                 reject(err)
                 return

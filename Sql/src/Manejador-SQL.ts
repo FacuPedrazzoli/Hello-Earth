@@ -69,4 +69,3 @@ export let insertarNumeroPrimoSQL = (nuevoNumero, onFinish) => {
         })
     })
 }
-

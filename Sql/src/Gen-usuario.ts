@@ -1,6 +1,6 @@
 const faker = require('faker');
 import {v4 as uuid} from 'uuid'
-import {Usuario} from './usuario'
+import {Usuario} from './Usuario'
 
 function crearObjetoFake():Usuario {
     return {

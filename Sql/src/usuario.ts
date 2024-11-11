@@ -1,4 +1,4 @@
-export type Usuario ={
+export type Usuario = {
     id : string,
     firstName: string,
     lastName: string,
@@ -8,4 +8,4 @@ export type Usuario ={
     accountName: string,
     account: string,
     amount: number
- }
+}

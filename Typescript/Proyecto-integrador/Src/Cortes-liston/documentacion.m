@@ -1,9 +1,9 @@
----------------------------------------------------------------------
-P R O Y E C T O  I N T E G R A D O R                     E T A P A  1
----------------------------------------------------------------------
+---
 
-Autores                                 Axl, Azul, Facu, Les maestres
-Fecha                                           10 de Octubre de 2024
+## P R O Y E C T O I N T E G R A D O R E T A P A 1
+
+Autores Axl, Azul, Facu, Les maestres
+Fecha 10 de Octubre de 2024
 
 Proposito
 
@@ -23,14 +23,11 @@ Descargo de responsabilidad
 Las funciones enunciadas a continuación componen el algoritmo, dichas
 funciones pueden estar sujetas a errores, hay que verificarlas.
 
-
-
                                              Detalle de las funciones
 
 Seguramente se necesite una funcion que dado un array con una
 determinada cantidad de cortes, nos devuelva que liston se ha elejido
 y cual es el desperdicio
-
 
 let seleccionarListon = cortes => {
 
@@ -47,25 +44,25 @@ solución con menor desperdicio.
 Aca me permito re-diseñar la funcion.
 
 let aplicarCortes = (cortes, tamanioListon) => {
-   let sumaCortes = cortes.reduce((tot, c) => tot + c, 0)
-   if (sumaCortes <= tamanioListon) {
-      return {
-         cortesAplicados: cortes,
-         cortesRestantes: [],
-         quedanCortes: false
-         desperdicio: calcularDesperdicio(sumaCortes, tamanioListon)
-      }
-   }
+let sumaCortes = cortes.reduce((tot, c) => tot + c, 0)
+if (sumaCortes <= tamanioListon) {
+return {
+cortesAplicados: cortes,
+cortesRestantes: [],
+quedanCortes: false
+desperdicio: calcularDesperdicio(sumaCortes, tamanioListon)
+}
+}
 }
 
 Aca podemos ver dos cosas
 
-1) Me saco de encima el problema mas simple que es que todos los
+1. Me saco de encima el problema mas simple que es que todos los
    cortes entran perfectamente en el liston.
-2) agrego una funcion calcularDesperdicio que debo definirla a priori
+2. agrego una funcion calcularDesperdicio que debo definirla a priori
 
 let calcularDesperdicio = (sumaCortes, tamanioListon) => {
-    return Math.floor(1000 - Math.round(sumaCortes / tamanioListon * 1000)) / 10
+return Math.floor(1000 - Math.round(sumaCortes / tamanioListon \* 1000)) / 10
 }
 
 Lo que retorna calcular desperdicio es un porcentaje con un decimal
@@ -75,47 +72,40 @@ cortes supera el tamaño del liston, hay que ir probando hasta ver
 cuantos cortes entran.
 
 let aplicarCortes = (cortes, tamanioListon) => {
-   let sumaCortes = cortes.reduce((tot, c) => tot + c, 0)
-   if (sumaCortes <= tamanioListon) {
-      return {
-         cortesAplicados: cortes,
-         cortesRestantes: [],
-         quedanCortes: false
-         desperdicio: calcularDesperdicio(sumaCortes, tamanioListon)
-      }
-   }
+let sumaCortes = cortes.reduce((tot, c) => tot + c, 0)
+if (sumaCortes <= tamanioListon) {
+return {
+cortesAplicados: cortes,
+cortesRestantes: [],
+quedanCortes: false
+desperdicio: calcularDesperdicio(sumaCortes, tamanioListon)
+}
+}
 
-   let totalConsumido = 0
-   let totalProyectado = 0
-   let salir = false
+let totalConsumido = 0
+let totalProyectado = 0
+let salir = false
 
-   for (let idx = 0; salir === false; idx++) {
-       totalProyectado += cortes[idx]
-       if (totalProyectado > tamanioListon) {
-           return {
-               cortesAplicados: cortes.slice(0, idx-1),
-               cortesRestantes: cortes.slice(idx-1)
-               quedanCortes: true
-               desperdicio: calcularDesperdicio(totalConsumido,
-                                tamanioListon)
-           }
-       }
-       totalConsumido = totalProyectado
-   }
+for (let idx = 0; salir === false; idx++) {
+totalProyectado += cortes[idx]
+if (totalProyectado > tamanioListon) {
+return {
+cortesAplicados: cortes.slice(0, idx-1),
+cortesRestantes: cortes.slice(idx-1)
+quedanCortes: true
+desperdicio: calcularDesperdicio(totalConsumido,
+tamanioListon)
+}
+}
+totalConsumido = totalProyectado
+}
 }
 
 El totalProyectado es lo que voy a tirarme a colocar en el liston, si
 entra, se pasa a la variable totalConsumido si no entra, se toma
 total consumido para calcular el desperdicio
 
-
-
-
-
                                               Testeo de las funciones
-
-
-
 
 Cabe recordar que para testear las funciones hay que habilitar tres
 pasos: A A A
@@ -124,10 +114,8 @@ Arrange - Acomodar los valores
 Act - Ejecutar las funcion
 Assert - Verificar el resultado
 
-
 Primero vamos a testear con un array de cortes que entre en su
 totalidad
-
 
 Arrange
 let cortes = [10, 20, 30]
@@ -138,12 +126,9 @@ Assert resp.cortesRestantes equals []
 Assert resp.quedanCortes equals false
 Assert resp.desperdicio equals 0
 
-
 Testeo lo mismo pero con desperdicio de 2 cm
 
-
 Arrange
-
 
 let cortes = [10, 20, 30]
 Act
@@ -153,11 +138,9 @@ Assert resp.cortesRestantes equals []
 Assert resp.quedanCortes equals false
 Assert resp.desperdicio equals 3.2
 
-
 Testeo para el caso que no alcancen los cortes
 
 Arrange
-
 
 let cortes = [10, 20, 30]
 Act
@@ -167,15 +150,7 @@ Assert resp.cortesRestantes equals [20, 30]
 Assert resp.quedanCortes equals true
 Assert resp.desperdicio equals 33.3
 
-
-
-
-
                     Aplicar cortes hasta encontrar la solucion optima
-
-
-
-
 
 Antes de hablar de una solucion optima, es necesario plantear que es
 una solucion.
@@ -215,7 +190,7 @@ desperdicio: 8
 Vamos ahora a crear la funcion encontrar solucion
 
 let encontrarSolucion = (cortes) => {
-    let solucion = []
+let solucion = []
 
     for (let continuar = true ;continuar;) {
         let liston = randomizarListon()
@@ -230,6 +205,7 @@ let encontrarSolucion = (cortes) => {
         solucion.push(itemSolucion)
         continuar = resp.quedanCortes
     }
+
 }
 
 Hay que tener en cuenta que la funcion encontrarSolucion es una funcion
@@ -240,22 +216,23 @@ por ultimo, hay que hacer una funcion que corra durante un tiempo,
 pero que por ahora no necesitamos a priori definirlo
 
 let forEver = () => {
-   let mejorSolucion = []
-   let menorDesperdicio = 100
+let mejorSolucion = []
+let menorDesperdicio = 100
 
-   let strCortes = fs.readFileSync('/rutaDelArchivoCortes', 'utf-8')
-   let cortes = strCortes.split(' ')
+let strCortes = fs.readFileSync('/rutaDelArchivoCortes', 'utf-8')
+let cortes = strCortes.split(' ')
 
-   for (;;) {
-      cortes = cortes.sort(Math.random() - 0.5)
-      let solucion = encontrarSolucion(cortes)
-      let desperdicioDeLaSolucion =
-          solucion.map(z => z.desperdicio)
-                  .reduce((a, b) => a + b, 0)
+for (;;) {
+cortes = cortes.sort(Math.random() - 0.5)
+let solucion = encontrarSolucion(cortes)
+let desperdicioDeLaSolucion =
+solucion.map(z => z.desperdicio)
+.reduce((a, b) => a + b, 0)
 
       if (desperdicioDeLaSolucion < menorDesperdicio) {
           menorDesperdicio = desperdicioDeLaSolucion
           mejorSolucion = solucion
       }
-   }
+
+}
 }
