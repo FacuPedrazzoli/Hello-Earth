@@ -1,0 +1,66 @@
+Bueno primero tenemos que ver la consigna que hay que realizar.
+
+//En vez de llamar a fnInit, quiero que hagan un select sobre la tabla
+//usuarios con un where que tengo nombre = 'Andy' y amount > 1
+
+1- Necesitamos definir nuestra funcion() la cual va a ser
+asincrona la cual no va a ser necesario que le demos ningun parametro
+
+# Esto lo realizamos de la siguiente forma:
+
+let funcion = async () => {}
+
+2- Tenemos que definir la variable conn (o conexion) da igual donde se 
+llama a la funcion crearConexion() con un await.
+
+# Esto lo realizamos de la siguiente forma:
+
+let conn = await crearConexion()
+
+Para que sirve y que es el await ? 
+
+El await es una palabra clave en JavaScript que se utiliza para esperar 
+a que un Promise (o Promesa) se resuelva. Solo puede ser utilizada 
+dentro de funciones declaradas con asincronas. Cuando se usa await, 
+la ejecución de la función se pausa hasta que la Promesa se resuelve, 
+y luego continúa con el valor resultante de la Promesa.
+
+3- Definimos otra variable para crear la consulta en SQL con el 
+nombre (firstName) y el monto (amount) estos datos los obtenemos
+la tabla uocra.usuarios con un SELECT * FROM usuarios.
+
+# Esto lo realizamos de la siguiente forma:
+
+let sql = "SELECT * FROM usuarios where firstName = ? and amount > ?"
+
+4- Definimos otra variable con la ejecucion de la consulta SQL utilizando 
+la conexión (conn) establecida y se pasan los parámetros ['Andy', 1] para 
+reemplazar los signos "?" en la consulta (sql). 
+
+# Esto lo realizamos de la siguiente forma:
+
+let resulSet = await query(conn, sql, ['Andy', 1])
+
+5- Se cierra la conexión a la base de datos. Con un end()
+
+# Esto lo realizamos de la siguiente forma:
+
+conn.end()
+
+6- Realizamos un console.log() de resulSet
+
+# Esto lo realizamos de la siguiente forma:
+
+console.lo(resulSet)
+
+Y este seria el resultado de la funcion completa:
+
+let obtenerUsuariosPorNombreYAmount = async () => {
+
+    let conn = await crearConexion()
+    let sql = "SELECT * FROM usuarios where firstName = ? and amount > ?"
+    let resulSet = await query(conn, sql, ['Andy', 1])
+
+    conn.end()
+    console.log(resulSet)
+}

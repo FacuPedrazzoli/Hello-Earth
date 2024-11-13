@@ -83,19 +83,13 @@ usuarios con un where que tengo nombre = 'Andy' y amount > 1
 */
 
 let obtenerUsuariosPorNombreYAmount = async () => {
-    let conn;
-    try {
-        conn = await crearConexion();
-        let sql = "SELECT * FROM usuarios WHERE firstName = ? AND amount > ?";
-        let resulSet = await query(conn, sql, ['Andy', 1]);
-        console.log(resulSet);
-    } catch (error) {
-        console.error('Error ejecutando la consulta:', error);
-    } finally {
-        if (conn) {
-            conn.end();
-        }
-    }
+
+    let conn = await crearConexion()
+    let sql = "SELECT * FROM usuarios where firstName = ? and amount > ?"
+    let resulSet = await query(conn, sql, ['Andy', 1])
+
+    conn.end()
+    console.log(resulSet)
 }
 
-obtenerUsuariosPorNombreYAmount();
+obtenerUsuariosPorNombreYAmount()
