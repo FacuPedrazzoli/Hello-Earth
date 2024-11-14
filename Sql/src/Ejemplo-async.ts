@@ -1,7 +1,6 @@
 /*
 Como ir del callback hell a las promises
 */
-
 import * as todoElDriver from 'mysql2/promise'
 import { crearConexion, query, insert } from "./Driver-Promise"
 
@@ -87,3 +86,4 @@ let funcionAsincronica = async () => {
 }
 
 funcionAsincronica()
+
